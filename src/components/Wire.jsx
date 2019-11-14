@@ -1,11 +1,12 @@
 import React from "react";
-class Wire extends React.Component {
-  render() {
-    return (
-      <>
-        <h1>Wire:{this.props.wire}</h1>
-      </>
-    );
-  }
-}
+
+const Wire = ({ wire, buyWire }) => {
+  return (
+    <>
+      <h1>Wire: {wire}</h1>
+      <button onClick={buyWire}> Buy Wire </button>
+    </>
+  );
+};
+
 export default Wire;
