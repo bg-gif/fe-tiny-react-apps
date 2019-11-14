@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import "./App.css";
+import Paperclips from "./components/Paperclips";
+import Wire from "./components/Wire";
+
+class App extends React.Component {
+  state = {
+    paperclips: 0,
+    wire: 1000
+  };
+  addPaperclip = () => {
+    this.setState(currentstate => {
+      let updateWire = currentstate.wire;
+      updateWire--;
+      let updatePaperclips = currentstate.paperclips;
+      updatePaperclips++;
+      return {
+        paperclips: updatePaperclips,
+        wire: updateWire
+      };
+    });
+  };
+
+  render() {
+    return (
+      <>
+        <Paperclips
+          paperclips={this.state.paperclips}
+          addPaperclip={this.addPaperclip}
+        />
+        <Wire wire={this.state.wire} />
+      </>
+    );
+  }
 }
 
 export default App;
