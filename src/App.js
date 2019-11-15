@@ -26,6 +26,20 @@ class App extends React.Component {
       }
     );
   };
+
+  buyAC = () => {
+    this.setState(
+      currentstate => {
+        return {
+          autoClip: (currentstate.autoClip += 1)
+        };
+      },
+      () => {
+        console.log(this.state.autoClip);
+      }
+    );
+  };
+
   changePrice = ({ target: { name } }) => {
     this.setState(currentstate => {
       let price = this.state.clipPrice;
@@ -63,6 +77,8 @@ class App extends React.Component {
           clipPrice={this.state.clipPrice}
           changePrice={this.changePrice}
           demand={this.state.demand}
+          buyAC={this.buyAC}
+          autoClip={this.state.autoClip}
         />
         <Wire wire={this.state.wire} buyWire={this.buyWire} />
       </>

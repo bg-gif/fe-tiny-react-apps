@@ -26,8 +26,9 @@ class Paperclips extends React.Component {
           </button>
         </div>
         <div>
-          {this.props.autoClip > 0 && this.props.autoClip}
           <button onClick={this.props.buyAC}>Buy AutoClip</button>
+
+          {this.props.autoClip > 0 && `auto- clippers:${this.props.autoClip}`}
         </div>
       </>
     );
