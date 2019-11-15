@@ -48,22 +48,22 @@ class Paperclips extends React.Component {
         </div>
         <div>
           {this.props.autoClip > 10 && (
-              <button
-                id={
-                  this.props.funds > this.props.superClipCost
-                    ? "funds"
-                    : "nofunds"
-                }
-                onClick={
-                  this.props.funds > this.props.superClipCost
-                    ? this.props.buyAC
-                    : null
-                }
-              >
-                Buy SuperClipper
-              </button>
-            ) &&
-            ` Cost: ${this.props.superClipCost}`}
+            <button
+              id={
+                this.props.funds > this.props.superClipCost
+                  ? "funds"
+                  : "nofunds"
+              }
+              onClick={
+                this.props.funds > this.props.superClipCost
+                  ? this.props.buyAC
+                  : null
+              }
+            >
+              Buy SuperClipper
+            </button>
+          )}
+
           {this.props.superClip > 0 &&
             ` Super-Clippers: ${this.props.superClip}`}
         </div>

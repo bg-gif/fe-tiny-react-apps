@@ -42,6 +42,16 @@ class App extends React.Component {
     );
   };
 
+  buySC = () => {
+    this.setState(currentstate => {
+      return {
+        superClip: (currentstate.superClip += 1),
+        funds: currentstate.funds - currentstate.superClipCost,
+        superClipCost: Math.round(currentstate.superClipCost * (120 / 100))
+      };
+    });
+  };
+
   changePrice = ({ target: { name } }) => {
     this.setState(currentstate => {
       let price = this.state.clipPrice;
