@@ -1,37 +1,39 @@
 import React from "react";
-
 import "./App.css";
 import Paperclips from "./components/Paperclips";
 import Wire from "./components/Wire";
 
 class App extends React.Component {
   state = {
-    funds: 110,
+    funds: 11999990,
     wire: 1000,
     paperclips: 0,
     clipPrice: 0.2,
     demand: 50,
-    autoClip: 0
+    autoClip: 0,
+    autoClipCost: 25,
+    wireCost: 70,
+    superClip: 0,
+    superClipCost: 1000
   };
   buyWire = () => {
-    this.setState(
-      currentstate => {
+    this.setState(currentstate => {
+      if (currentstate.funds >= currentstate.wireCost)
         return {
           wire: (currentstate.wire += 1000),
-          funds: (currentstate.funds -= 70)
+          funds: (currentstate.funds -= currentstate.wireCost),
+          wireCost: currentstate.wireCost * (120 / 100)
         };
-      },
-      () => {
-        console.log(this.state);
-      }
-    );
+    });
   };
 
   buyAC = () => {
     this.setState(
       currentstate => {
         return {
-          autoClip: (currentstate.autoClip += 1)
+          autoClip: (currentstate.autoClip += 1),
+          funds: currentstate.funds - currentstate.autoClipCost,
+          autoClipCost: Math.round(currentstate.autoClipCost * (120 / 100))
         };
       },
       () => {
@@ -79,8 +81,19 @@ class App extends React.Component {
           demand={this.state.demand}
           buyAC={this.buyAC}
           autoClip={this.state.autoClip}
+          autoClipCost={this.state.autoClipCost}
+          superClip={this.state.superClip}
+          superClipCost={this.state.superClipCost}
         />
-        <Wire wire={this.state.wire} buyWire={this.buyWire} />
+        <br />
+        <hr />
+        <Wire
+          id="wire"
+          wire={this.state.wire}
+          buyWire={this.buyWire}
+          wireCost={this.state.wireCost}
+          funds={this.state.funds}
+        />
       </>
     );
   }
